@@ -1,0 +1,25 @@
+####################################################################
+# Makefile for building the Calc application
+#
+
+
+#
+# Definitions
+#
+CC = gcc
+CFLAGS = -g -Wall
+CCLINK = $(CC)
+OBJS = main.o expTree.o polishCalc.o
+RM = rm -f
+TARGET = Calc
+
+#creating the executable Calc.
+$(TARGET): $(OBJS)
+	$(CCLINK) -o doom $(OBJS) $(LIBS)
+# Creating object files using default rules
+expTree.o: expTree.c defs.h expTree.h
+main.o: main.c defs.h polishCalc.h
+polishCalc.o: polishCalc.c expTree.h defs.h polishCalcTypes.h
+#cleaning new files before making new
+clean:
+$(RM) $(TARGET) *.o
